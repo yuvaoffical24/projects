@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculater</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+           /*background: rgb(154, 172, 172);*/
+           background-image: url('bmi.jpg');
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-position: 0% 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width: 300px;
+            min-height: 300px;
+            background: linear-gradient(to left top,rgb(0, 170, 255),rgb(124, 225, 56));
+            backdrop-filter: blur(30px);
+            border-radius: 10px;
+        }
+        .bmi_body .bmi_title h3{
+            text-align: center;
+            padding: 15px;
+            font-weight: 900;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .bmi_content{
+            padding: 10px;
+        }
+        .bmi_content label , input{
+            width: 100%;
+            height: 30px;
+            margin:5px 0px;
+            display: block;
+            font-weight: 900;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .bmi_content input{
+            padding: 0px 10px;
+            border: none;
+            border-radius: 10px;
+
+        }
+        .bmi_content button{
+            padding: 7px;
+            font-weight: 700;
+            border: none;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+        .bmi_content button:hover{
+            transform: scale(1.05);
+        }
+        .bmi_content button:active{
+            transform: scale(0.95);
+        }
+        
+        .bmi_result{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-weight: 900;
+            line-height: 50px;
+            font-size: 19px;
+        }
+        .calc_btn{
+            color: rgb(0, 0, 0);
+           background-color:green;
+
+        }
+        .clear_btn{
+           color: rgb(0, 0, 0);
+           background-color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bmi_body">
+
+            <div class="bmi_title">
+                <h3>BMI CALC</h3>
+            </div>
+<!-- _____ -->
+            <div class="bmi_content">
+                <label for="weight"> WEIGHT</label>
+                <input type="number"  class="weight" name="" placeholder="kg...">
+                <label for="height"> HEIGHT</label>
+                <input type="number" class="height"  name="" placeholder="cm..">
+                <div class="btn-group">
+                <button type="button" class="calc_btn">calculate</button>
+                <button type="button" class="clear_btn">Clear</button>
+                </div>
+            </div>
+
+            <div class="bmi_result">
+                <p class="result">Stay Healthy </p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        let weight = document.querySelector(".weight");
+        let height = document.querySelector(".height");
+        let calc_btn = document.querySelector(".calc_btn");
+        document.querySelector(".clear_btn");
+        let bmi_result = document.querySelector(".result");
+
+        calc_btn.addEventListener("click",()=>{
+            let wvalue = Number( weight.value);
+            let hvalue = Number( height.value);
+            let heightcal = (hvalue/100)* (hvalue/100);
+            let result = (wvalue /heightcal);
+            
+       
+
+            if(result <=18.4){
+                bmi_result.innerHTML="Under Weight"
+            }
+            else if(result<=24.9){
+                bmi_result.innerHTML="Normal"
+            }
+            else if(result<=39.9){
+                bmi_result.innerHTML="Over Weight"
+            }
+            else if(result>=40.0){
+                bmi_result.innerHTML="Obese"
+                alert("obese")
+            }
+         })
+         let clear_btn = document.querySelector(".clear_btn");
+         clear_btn.addEventListener("click",()=>{
+            let first = document.querySelector(".weight")
+            first.value = '';
+            let second = document.querySelector(".height")
+            second.value = '';
+            document.querySelector(".result").innerHTML = 'Stay Healthy'
+         })
+    </script>
+</body>
+</html>
